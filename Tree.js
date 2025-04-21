@@ -71,4 +71,64 @@ export class Tree {
       break
     }
   }
+
+  deleteItem (value) {
+    function findNodeAndParent (root) {
+      // we are basically pushing our entire path then
+      // the last two will be the parent and the node
+      const stack = [null]
+
+      let next = root
+      do {
+        stack.push(next)
+        if (value < next.data) {
+          next = next.left
+          if (next === null) stack.push(next)
+          continue
+        }
+        if (value > next.data) {
+          next = next.right
+          if (next === null) stack.push(next)
+          continue
+        }
+        // If the value === next.data
+        break
+      } while (next !== null)
+
+      //     |    Node   |   Parent    |
+      return [stack.pop(), stack.pop()]
+    }
+    const [node, parent] = findNodeAndParent(this.root)
+
+    // * The property Name where parent is referencing node (left or right)
+    // *    👇  = witch ever property name holds node
+    const where = parent.left ? 'left' : (parent.right) ? 'right' : ''
+
+    // Case 1️⃣: Value doesn't exist [✅]
+    if (!node) return false
+
+    // Case 2️⃣: Value is a leaf node [✅]
+    if (!node.left && !node.right) {
+      // de-reference it
+      parent[where] = null
+      return 'Leaf 🍁'
+    }
+
+    // Case 3️⃣: Value has either Left || Right [✅]
+    //    🅰- Has Left only
+    if (node.left && !node.right) {
+      parent[where] = node.left
+      node.left = null
+      return 'Has Left only 👈'
+    }
+    //    🅱- Has Right only
+    if (!node.left && node.right) {
+      parent[where] = node.right
+      node.right = null
+      return 'Has Right only 👉'
+    }
+
+    // Case 4️⃣: Value Has Both Right & Left [❌]
+    return 'Has Left & Right 🌳'
+  }
 }
