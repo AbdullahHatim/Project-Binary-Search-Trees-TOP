@@ -68,6 +68,7 @@ export class Tree {
         break
       }
       // nothing happens if value === next.data
+      break
     }
   }
 }

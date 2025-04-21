@@ -5,7 +5,4 @@ const tree = new Tree(arr)
 
 tree.insert(6)
 tree.insert(100000)
-tree.insert(6000)
-tree.insert(6001)
-tree.insert(6002)
 Tree.prettyPrint(tree.root)
