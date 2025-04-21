@@ -41,4 +41,33 @@ export class Tree {
       Tree.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true)
     }
   }
+
+  insert (value) {
+    let next = this.root
+    while (next !== null) {
+      // Should (value) go into left sub-tree?
+      if (value < next.data) {
+        // if there is another sub-tree repeat
+        if (next.left) {
+          next = next.left
+          continue
+        }
+        // otherwise make (value) the left sub-tree
+        next.left = new Node(value)
+        break
+      }
+      // Should (value) go into right sub-tree?
+      if (value > next.data) {
+        // if there is another sub-tree repeat
+        if (next.right) {
+          next = next.right
+          continue
+        }
+        // otherwise make (value) the right sub-tree
+        next.right = new Node(value)
+        break
+      }
+      // nothing happens if value === next.data
+    }
+  }
 }
