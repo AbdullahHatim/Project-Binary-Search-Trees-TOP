@@ -100,12 +100,18 @@ export class Tree {
     }
     const [node, parent] = findNodeAndParent(this.root)
 
-    // * The property Name where parent is referencing node (left or right)
-    // *    👇  = witch ever property name holds node
-    const where = parent.left ? 'left' : (parent.right) ? 'right' : ''
-
     // Case 1️⃣: Value doesn't exist [✅]
     if (!node) return false
+
+    // * The property Name where parent is referencing node (left or right)
+    // *    👇  = witch ever property name holds node
+    let where = ''
+    if (parent.left === node) {
+      where = 'left'
+    }
+    if (parent.right === node) {
+      where = 'right'
+    }
 
     // Case 2️⃣: Value is a leaf node [✅]
     if (!node.left && !node.right) {
