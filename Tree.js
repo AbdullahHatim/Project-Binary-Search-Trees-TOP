@@ -106,11 +106,13 @@ export class Tree {
     // * The property Name where parent is referencing node (left or right)
     // *    👇  = witch ever property name holds node
     let where = ''
-    if (parent.left === node) {
-      where = 'left'
-    }
-    if (parent.right === node) {
-      where = 'right'
+    if (parent) {
+      if (parent.left === node) {
+        where = 'left'
+      }
+      if (parent.right === node) {
+        where = 'right'
+      }
     }
 
     // Case 2️⃣: Value is a leaf node [✅]
@@ -135,6 +137,8 @@ export class Tree {
     }
 
     // Case 4️⃣: Value Has Both Right & Left [❌]
+    console.log(node.left.data)
+    console.log(node.right.data)
     return 'Has Left & Right 🌳'
   }
 }
