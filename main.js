@@ -5,5 +5,4 @@ const tree = new Tree(arr)
 
 Tree.prettyPrint(tree.root)
 
-console.log(tree.find(1))
-Tree.prettyPrint(tree.find(1))
+tree.levelOrder(node => console.log(node.data))

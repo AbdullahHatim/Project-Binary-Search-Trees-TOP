@@ -176,4 +176,24 @@ export class Tree {
     } while (next !== null)
     return next
   }
+
+  levelOrder (callback) {
+    if (!(callback instanceof Function)) throw new TypeError('Expected a function')
+
+    const queue = []
+    // 🧊 Syntactic Sugar
+    queue.enqueue = queue.push
+    queue.dequeue = queue.shift
+
+    let next
+    queue.enqueue(this.root)
+
+    while (queue.length) {
+      next = queue.dequeue()
+      if (next.left) queue.enqueue(next.left)
+      if (next.right) queue.enqueue(next.right)
+
+      callback(next)
+    }
+  }
 }
