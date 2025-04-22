@@ -5,4 +5,4 @@ const tree = new Tree(arr)
 
 Tree.prettyPrint(tree.root)
 
-console.log(tree.height())
+console.log(tree.depth(4))

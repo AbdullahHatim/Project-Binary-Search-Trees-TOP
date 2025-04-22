@@ -251,7 +251,7 @@ export class Tree {
     traverse(this.root)
   }
 
-  height (value) {
+  depth (value) {
     // 📝 CTRL+C CTRL+V from deleteItem -> findNodeAndParent()
     let nodesEncountered = 0
     let next = this.root
