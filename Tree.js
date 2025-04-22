@@ -251,6 +251,21 @@ export class Tree {
     traverse(this.root)
   }
 
+  height (value) {
+    const node = this.find(value)
+    if (!node) return null
+
+    let maxHeight = 0
+    traverse(node)
+    function traverse (root, e = 0) {
+      if (maxHeight < e) maxHeight++
+      if (root.left) traverse(root.left, e + 1)
+      if (root.right) traverse(root.right, e + 1)
+      e--
+    }
+    return maxHeight
+  }
+
   depth (value) {
     // 📝 CTRL+C CTRL+V from deleteItem -> findNodeAndParent()
     let nodesEncountered = 0
