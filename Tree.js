@@ -123,13 +123,13 @@ export class Tree {
     }
 
     // Case 3️⃣: Value has either Left || Right [✅]
-    //    🅰- Has Left only
+    //    A- Has Left only
     if (node.left && !node.right) {
       parent[where] = node.left
       node.left = null
       return 'Has Left only 👈'
     }
-    //    🅱- Has Right only
+    //    B- Has Right only
     if (!node.left && node.right) {
       parent[where] = node.right
       node.right = null
