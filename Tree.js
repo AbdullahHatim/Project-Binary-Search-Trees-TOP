@@ -159,4 +159,21 @@ export class Tree {
     console.log(target.data)
     return 'Has Left & Right 🌳'
   }
+
+  find (value) {
+    let next = this.root
+    do {
+      if (value < next.data) {
+        next = next.left
+        continue
+      }
+      if (value > next.data) {
+        next = next.right
+        continue
+      }
+      // If the value === next.data
+      break
+    } while (next !== null)
+    return next
+  }
 }
