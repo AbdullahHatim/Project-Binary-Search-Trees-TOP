@@ -286,4 +286,69 @@ export class Tree {
     if (!next) return null
     return --nodesEncountered
   }
+
+  // * High-level overview of this function👀: for every level of this array make
+  // * a sub-array that holds all the heights of the nodes in that level, every level will be
+  // * represented as a sub-array, once we get into another level we process the previous level
+  // * heights take the max/min height and get their diff, if at any point our diff is higher
+  // * than 1 we exit and return false otherwise we will return true
+  isBalanced () {
+    // 🔁 Recursively Traverse Breadth-First/ Level Order
+    // The idea is to compare the height of every node in the same Level
+
+    // *  Array that holds all heights for all levels
+    // *  Each Index Represents the level
+    const heightArray = []
+
+    // * diff will be responsible for telling us weather any level has height imbalances
+    // * if any height in any sub-array(level) has a diff > 1 to any other height we out🏃‍♂️
+    let diff = 0
+
+    let level = -1
+    // * This is Arrow because i wanted to use 'this' easily
+    const traverse = (queue = []) => {
+      // 🔓 Escape Conditions
+      if (!queue.length) return
+      if (diff > 1) return
+
+      // Regular Level Order Traversal
+      const next = queue.shift()
+      if (next.left) queue.push(next.left)
+      if (next.right) queue.push(next.right)
+
+      // Level & Height Calculations for every Node
+      const currentLevel = this.depth(next.data)
+      const currentHeight = this.height(next.data)
+
+      // * same level? just add that height to the sub-array(level array)
+      if (currentLevel === level) {
+        heightArray[currentLevel].push(currentHeight)
+      } else {
+        // * for every level create a sub-array that holds all the heights of it
+        heightArray[currentLevel] = []
+        heightArray[currentLevel].push(currentHeight)
+
+        // * Did we go into another level? Now lets compare max Height to min Height of the previous Level
+        // * Assign that to our outer-scope (diff) and if (diff > 1) no need to go deeper the tree is imbalanced
+        const prevHeightArray = heightArray[currentLevel - 1]
+        if (prevHeightArray instanceof Array) {
+          if (prevHeightArray.length > 1) {
+            prevHeightArray.sort()
+            const max = prevHeightArray[prevHeightArray.length - 1]
+            const min = prevHeightArray[0]
+            diff = max - min
+          }
+        }
+      }
+
+      // * Next Level? Increase Level and thus new sub-array of heights
+      if (currentLevel > level) level = currentLevel
+
+      // 🔁 Recurse
+      traverse(queue)
+    }
+    traverse([this.root])
+
+    return diff <= 1
+  }
 }
