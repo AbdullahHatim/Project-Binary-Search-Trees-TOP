@@ -214,7 +214,7 @@ export class Tree {
     // 🤔 I like the while loop version
   }
 
-  // 👁‍🗨 Depth-First Search
+  // 👁‍🗨 Depth-First Traversal
   // * A- Pre order traversal   📞 👈 👉
   preOrder (callback) {
     if (!(callback instanceof Function)) throw new TypeError('Expected a function')
