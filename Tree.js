@@ -136,7 +136,7 @@ export class Tree {
       return 'Has Right only 👉'
     }
 
-    // Case 4️⃣: Value Has Both Right & Left [❌]
+    // Case 4️⃣: Value Has Both Right & Left [✅]
     //   A- Go Right Then find Left Most node
     const target = getLeftMostOfRight()
     function getLeftMostOfRight () {
