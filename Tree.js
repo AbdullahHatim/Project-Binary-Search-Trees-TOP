@@ -351,4 +351,10 @@ export class Tree {
 
     return diff <= 1
   }
+
+  rebalance () {
+    const sortedArr = []
+    this.inOrder(n => { sortedArr.push(n.data) })
+    this.root = Tree.buildTree(sortedArr)
+  }
 }
