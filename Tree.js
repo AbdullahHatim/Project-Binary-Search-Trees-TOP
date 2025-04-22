@@ -250,4 +250,25 @@ export class Tree {
     }
     traverse(this.root)
   }
+
+  height (value) {
+    // 📝 CTRL+C CTRL+V from deleteItem -> findNodeAndParent()
+    let nodesEncountered = 0
+    let next = this.root
+    do {
+      nodesEncountered++
+      if (value < next.data) {
+        next = next.left
+        continue
+      }
+      if (value > next.data) {
+        next = next.right
+        continue
+      }
+      // If the value === next.data
+      break
+    } while (next !== null)
+    if (!next) return null
+    return --nodesEncountered
+  }
 }
