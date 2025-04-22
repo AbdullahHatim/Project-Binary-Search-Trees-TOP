@@ -196,4 +196,21 @@ export class Tree {
       callback(next)
     }
   }
+
+  levelOrderRec (callback) {
+    if (!(callback instanceof Function)) throw new TypeError('Expected a function')
+    // 🔁 Recursively Traverse Breadth-First
+    function traverse (queue = []) {
+      if (!queue.length) return
+
+      const next = queue.shift()
+      if (next.left) queue.push(next.left)
+      if (next.right) queue.push(next.right)
+
+      callback(next)
+      traverse(queue)
+    }
+    traverse([this.root])
+    // 🤔 I like the while loop version
+  }
 }
