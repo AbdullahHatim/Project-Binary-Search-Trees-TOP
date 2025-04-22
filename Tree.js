@@ -137,8 +137,26 @@ export class Tree {
     }
 
     // Case 4️⃣: Value Has Both Right & Left [❌]
-    console.log(node.left.data)
-    console.log(node.right.data)
+    //   A- Go Right Then find Left Most node
+    const target = getLeftMostOfRight()
+    function getLeftMostOfRight () {
+      let next = node.right
+      while (next.left !== null) {
+        next = next.left
+      }
+      return next
+    }
+    //   B- Replace node with target
+    this.deleteItem(target.data)
+    if (parent) parent[where] = target
+    target.left = node.left
+    target.right = node.right
+    node.left = null
+    node.right = null
+    //   C- node is root then root = target
+    if (node === this.root) this.root = target
+
+    console.log(target.data)
     return 'Has Left & Right 🌳'
   }
 }
