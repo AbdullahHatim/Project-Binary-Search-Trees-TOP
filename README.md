@@ -26,12 +26,6 @@ graph TD
     B --> E(Right Grandchild)
     C --> F(Left Grandchild)
     C --> G(Right Grandchild)
-    style B fill:#f9f,stroke:#333,stroke-width:2px
-    style C fill:#ccf,stroke:#333,stroke-width:2px
-    style D fill:#f9f,stroke:#333,stroke-width:2px
-    style E fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#ccf,stroke:#333,stroke-width:2px
-    style G fill:#ccf,stroke:#333,stroke-width:2px
 ```
 
 ## Project Structure
