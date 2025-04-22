@@ -213,4 +213,41 @@ export class Tree {
     traverse([this.root])
     // 🤔 I like the while loop version
   }
+
+  // 👁‍🗨 Depth-First Search
+  // * A- Pre order traversal   📞 👈 👉
+  preOrder (callback) {
+    if (!(callback instanceof Function)) throw new TypeError('Expected a function')
+    function traverse (root) {
+      if (!root) return
+      callback(root)
+      if (root.left) traverse(root.left)
+      if (root.right) traverse(root.right)
+    }
+    traverse(this.root)
+  }
+
+  // * B- In order traversal    👈 📞 👉
+  inOrder (callback) {
+    if (!(callback instanceof Function)) throw new TypeError('Expected a function')
+    function traverse (root) {
+      if (!root) return
+      if (root.left) traverse(root.left)
+      callback(root)
+      if (root.right) traverse(root.right)
+    }
+    traverse(this.root)
+  }
+
+  // * C- Post order traversal  👈 👉 📞
+  postOrder (callback) {
+    if (!(callback instanceof Function)) throw new TypeError('Expected a function')
+    function traverse (root) {
+      if (!root) return
+      if (root.left) traverse(root.left)
+      if (root.right) traverse(root.right)
+      callback(root)
+    }
+    traverse(this.root)
+  }
 }
